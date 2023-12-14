@@ -168,6 +168,38 @@ class DTSingleLineStringVariableNoClip:
     def encode(self, clip, variable, value):
         variables.state[variable] = value
         return (clip,)
+    
+class PauseUntilToggleOn:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "image": ("PIXEL_IMAGE", ),
+                "toggle": ("BOOLEAN", {"default": False}),
+            }
+        }
+
+    RETURN_TYPES = ("PIXEL_IMAGE",)
+    FUNCTION = "process"
+
+    CATEGORY = "DoubTech/Control"
+
+    def process(self, image, toggle):
+        # Check if the toggle is on
+        if toggle:
+            # If toggle is on, return the image
+            return (image,)
+        else:
+            # If toggle is off, wait or pass through a null value
+            # Placeholder for wait mechanism or returning a default/null image
+            # Example: return (None,) or wait until the toggle is turned on
+
+            # Implement your logic here
+            pass
+
+        return (None,)
+    
+
 
 # A dictionary that contains all nodes you want to export with their names
 # NOTE: names should be globally unique
@@ -180,6 +212,7 @@ NODE_CLASS_MAPPINGS = {
     "StringFormatSingleLine": StringFormatSingleLine,
     "IntVariable": IntVariable,
     "FloatVariable": FloatVariable,
+    "PauseUntilToggleOn": PauseUntilToggleOn,
 }
 
 # A dictionary that contains the friendly/humanly readable titles for the nodes
@@ -192,4 +225,5 @@ NODE_DISPLAY_NAME_MAPPINGS = {
 
     "StringFormat": "String Format",
     "StringFormatSingleLine": "Short String Format",
+    "PauseUntilToggleOn": "Pause Until Toggle On",
 }
