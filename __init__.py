@@ -169,7 +169,7 @@ class DTSingleLineStringVariableNoClip:
         variables.state[variable] = value
         return (clip,)
     
-@node
+
 class PauseUntilToggleOn:
     """
     Outputs the given image only if the toggle is True. Otherwise, outputs None.
@@ -186,7 +186,7 @@ class PauseUntilToggleOn:
         }
 
     FUNCTION = "pause_on_toggle"
-    CATEGORY = "utils/Control"
+    CATEGORY = "utils"
     custom_name = "Pause Until Toggle On"
 
     def pause_on_toggle(self, image, toggle):
