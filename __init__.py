@@ -169,35 +169,29 @@ class DTSingleLineStringVariableNoClip:
         variables.state[variable] = value
         return (clip,)
     
+@node
 class PauseUntilToggleOn:
+    """
+    Outputs the given image only if the toggle is True. Otherwise, outputs None.
+    """
+    RETURN_TYPES = ("IMAGE",)
+    
     @classmethod
     def INPUT_TYPES(s):
         return {
             "required": {
-                "image": ("PIXEL_IMAGE", ),
-                "toggle": ("BOOLEAN", {"default": False}),
+                "image": ("IMAGE", ),
+                "toggle": ("BOOL", {"default": False}),
             }
         }
 
-    RETURN_TYPES = ("PIXEL_IMAGE",)
-    FUNCTION = "process"
+    FUNCTION = "pause_on_toggle"
+    CATEGORY = "utils/Control"
+    custom_name = "Pause Until Toggle On"
 
-    CATEGORY = "DoubTech/Control"
+    def pause_on_toggle(self, image, toggle):
+        return (image if toggle else None,)
 
-    def process(self, image, toggle):
-        # Check if the toggle is on
-        if toggle:
-            # If toggle is on, return the image
-            return (image,)
-        else:
-            # If toggle is off, wait or pass through a null value
-            # Placeholder for wait mechanism or returning a default/null image
-            # Example: return (None,) or wait until the toggle is turned on
-
-            # Implement your logic here
-            pass
-
-        return (None,)
     
 
 
